@@ -1,21 +1,33 @@
-import React from 'react'
-
-const Message = () => {
+import React from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import extractTimeAndDate from "../../utils/extractTimeAndDate";
+import useConversation from "../../zustand/useConversation";
+const Message = ({ message }) => {
+  const { authUser } = useAuthContext();
+  const { selectedConversation } = useConversation();
+  const fromMe = message.senderId === authUser._id;
+  // console.log(fromMe)
+  const chatClassName = fromMe ? "chat-end" : "chat-start";
+  const profilePic = fromMe
+    ? authUser.profilePic
+    : selectedConversation?.profilePic;
+  const bgColor = fromMe ? "bg-sky-500" : "";
+  const dateAndTime = extractTimeAndDate(message.createdAt)
   return (
     <div>
-      <div className="chat chat-end">
-  <div className="chat-image avatar">
-    <div className="w-10 rounded-full">
-      <img alt="Tailwind CSS chat bubble component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+      <div className={`chat ${chatClassName}`}>
+        <div className="chat-image avatar">
+          <div className="w-10 rounded-full">
+            <img alt="Tailwind CSS chat bubble component" src={profilePic} />
+          </div>
+        </div>
+        <div className={`chat-bubble text-white ${bgColor}`}>
+          {message.message}
+        </div>
+        <div className="chat-footer opacity-50">{dateAndTime.time}</div>
+      </div>
     </div>
-  </div>
-  <div className="chat-bubble bg-sky-500 text-white">I hate you!</div>
-  <div className="chat-footer opacity-50">
-    12:46
-  </div>
-</div>
-    </div>
-  )
-}
+  );
+};
 
-export default Message
+export default Message;

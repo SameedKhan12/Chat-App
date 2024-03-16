@@ -54,10 +54,12 @@ export const sginupUser = async (req, res) => {
 };
 export const loginUser = async (req, res) => {
   try {
+    
     const {userName,password} = req.body;
     const user = await User.findOne({userName});
+    
     const isPaswordCorrect = await bcrypt.compare(password,user?.password || "");
-
+    
     if(!user || !isPaswordCorrect){
       return res.status(400).json({error: "Invalid username or password"});
     }
