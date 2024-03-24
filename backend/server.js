@@ -14,7 +14,7 @@ dotenv.config();
 const PORT = process.env.PORT || 9080;
 
 const __dirname = path.resolve();
-
+console.log("http:localhost:9090")
 app.use(express.json());
 app.use(cookieParser())
 
