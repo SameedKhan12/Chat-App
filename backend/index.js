@@ -6,15 +6,13 @@ import messageRoute from "./routes/message.routes.js";
 import userRoute from "./routes/user.routes.js";
 import connetToMongoDB from "./db/connetToMngoDB.js";
 import { app, server } from "./socket/socket.js";
-import path from 'path'
-
+import path from 'path';
 dotenv.config();
 
 
-const PORT = process.env.PORT || 9080;
+const PORT = process.env.PORT || 9060;
 
 const __dirname = path.resolve();
-console.log("http:localhost:9090")
 app.use(express.json());
 app.use(cookieParser())
 
@@ -27,7 +25,9 @@ app.use("/api/message", messageRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 
-app.use(express.static(path.join(__dirname,"/frontend/dist")));
+app.use(express.static(path.join(__dirname, "frontend", "dist")));
+
+
 
 app.get("*",(req,res)=>{
   res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
