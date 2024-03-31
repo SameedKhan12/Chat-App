@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app)
 const io = new Server(server, {
     cors: {
-        origin: ['http://localhost:9090','https://chat-app-production-a793.up.railway.app/'],
+        origin: ['https://localhost:9090','https://chat-app-production-a793.up.railway.app/'],
         methods: ['GET', 'POST'],
         credentials: true
     }
