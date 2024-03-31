@@ -13,7 +13,8 @@ export const SocketContextProvider = ({ childern }) => {
   const { authUser } = useAuthContext();
   useEffect(() => {
     if (authUser) {
-      const socket = io("http://localhost:9090",{
+      const socket = io("https://chat-app-production-a793.up.railway.app" ,{
+        withCredentials: true,
         query:{
             userId:authUser._id
         }
