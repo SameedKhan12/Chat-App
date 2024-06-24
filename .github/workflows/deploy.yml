@@ -38,5 +38,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "sameedkhan-chat-app-94"
-          entrypoint: "./dist"
+          entrypoint: "/dist/index.html"
           root: ""
