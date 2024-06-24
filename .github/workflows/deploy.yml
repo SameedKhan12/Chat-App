@@ -38,5 +38,5 @@ jobs:
         uses: denoland/deployctl@v1
         with:
           project: "sameedkhan-chat-app-94"
-          entrypoint: "./backend/index.js"
-          root: "./"
+          entrypoint: "backend/index.js"
+          root: ""
