@@ -39,4 +39,4 @@ jobs:
         with:
           project: "sameedkhan-chat-app-94"
           entrypoint: "backend/index.js"
-          root: ""
+          root: "./"
