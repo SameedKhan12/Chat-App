@@ -6,13 +6,13 @@ import messageRoute from "./routes/message.routes.js";
 import userRoute from "./routes/user.routes.js";
 import connetToMongoDB from "./db/connetToMngoDB.js";
 import { app, server } from "./socket/socket.js";
-import path from 'path';
+import { join, resolve } from 'https://deno.land/std@0.180.0/path/mod.ts';
 dotenv.config();
 
 
 const PORT = process.env.PORT || 9060;
 
-const __dirname = path.resolve();
+const __dirname = resolve();
 app.use(express.json());
 app.use(cookieParser())
 
@@ -25,10 +25,10 @@ app.use("/api/message", messageRoute);
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 
-app.use(express.static(path.join(__dirname, "frontend", "dist")));
+app.use(express.static(join(__dirname, "frontend", "dist")));
 
 
 
 app.get("*",(req,res)=>{
-  res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"));
+  res.sendFile(join(__dirname, "frontend", "dist", "index.html"));
 })
